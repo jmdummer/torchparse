@@ -51,7 +51,7 @@ def out_conv(spatial, config):
             for k in ['padding', 'kernel_size', 'stride']]
     p2 = p if isinstance(p, int) else p[0] + p[1]
 
-    return ((spatial + p2 - k)/s).floor() + 1
+    return torch.div((spatial + p2 - k), s, rounding_mode='trunc') + 1
 
 def out_tconv(spatial, config):
     """
